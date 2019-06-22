@@ -2,21 +2,24 @@ import Word
 from hazm import *
 
 class Hemistic:
+
+    normalizer = Normalizer()
+
     def __init__(self, hemistic_id, content):
         self.hemistic_id = hemistic_id
-        # normalized_content = self.normalizeHemestic(content)
-        self.content = word_tokenize(content)
+        self.content = []
         self.words = []
-        self.autoSetWords()
+        self.filter(content)
+        self.autoSetWords(self.content)
     
-    def autoSetWords(self):
-        for index, word in enumerate(self.content):
+    def autoSetWords(self, content):
+        for index, word in enumerate(content):
             word_obj = Word.Word(index, word)
             self.words.append(word_obj)
         
         del self.content # to lowe object size
     
-    # def normalizeHemestic(self, content):
-    #     normalizer = Normalizer()
-    #     print(word_tokenize(content[::-1]))
+    def filter(self, content):
+        word = Hemistic.normalizer.normalize(content)
+        self.content = word_tokenize(word)        
         
