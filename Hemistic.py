@@ -9,7 +9,7 @@ class Hemistic:
         self.hemistic_id = hemistic_id
         self.content = []
         self.words = []
-        self.filter(content)
+        self.content = self.filter(content)
         self.autoSetWords(self.content)
     
     def autoSetWords(self, content):
@@ -17,9 +17,18 @@ class Hemistic:
             word_obj = Word.Word(index, word)
             self.words.append(word_obj)
         
-        del self.content # to lowe object size
+        del self.content # to lower object size
     
     def filter(self, content):
         word = Hemistic.normalizer.normalize(content)
-        self.content = word_tokenize(word)        
+        return word_tokenize(word)
+
+    def getWords(self):
+        words = []
+        for word in self.words:
+            temp = word.get()
+            if temp != None:
+                words.append(temp)    
+        
+        return words
         

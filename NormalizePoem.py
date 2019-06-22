@@ -12,6 +12,8 @@ def normalize():
         docs_content.append(raw_input)
     
     docs = []
-    for doc in docs_name:
-        doc_obj = Document.Document(doc, docs_content[0])
+    for index, doc in enumerate(docs_name):
+        doc_obj = Document.Document(doc, docs_content[index])
         docs.append(doc_obj)
+    
+    return docs

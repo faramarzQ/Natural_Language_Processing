@@ -11,18 +11,19 @@ class Word:
         self.content = ''
         self.stopped = False
         self.ifWordIsStopped(content)
-        self.filter(content)
+        self.content = self.filter(content)
 
     def ifWordIsStopped(self, content):
         if content in Word.stop_words:
             self.stopped = True
 
     def get(self):
-        return self.content
+        if self.stopped != True:
+            return self.content
 
     def filter(self, content):
-        stem = Word.stemmer.stem(content)
-        self.content = Word.lemmatizer.lemmatize(stem)
+        temp = Word.stemmer.stem(content)
+        return Word.lemmatizer.lemmatize(temp).split('#')[0]
 
 
 

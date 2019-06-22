@@ -15,3 +15,10 @@ class Document:
             self.hemistics.append(hemistic_obj)
         
         del self.content # to lower object size
+    
+    def getWords(self):
+        words = []
+        for hemistic in self.hemistics:
+            words.append(hemistic.getWords())
+        
+        return words
