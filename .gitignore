@@ -1,4 +1,5 @@
 __pycache__
-2625.persian_poem
+*.persian_poem
+*.persian_query
 Stopwords
 *.pyc
