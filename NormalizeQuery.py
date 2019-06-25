@@ -2,7 +2,7 @@ import glob
 import Document
 import Word
 
-def normalize():
+def normalize(documents):
 
     queries_name = []
     for query in glob.glob("*.persian_query"):
@@ -15,7 +15,7 @@ def normalize():
     
     queries = []
     for index, query in enumerate(queries_name):
-        query_obj = Document.Document(query, queries_content[index])
+        query_obj = Document.Document(query, queries_content[index], documents)
         queries.append(query_obj)
 
     return queries
